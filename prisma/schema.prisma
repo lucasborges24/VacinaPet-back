@@ -1,0 +1,42 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+model Users {
+  id       Int    @id @default(autoincrement())
+  name     String
+  email    String @unique
+  password String
+  Petz     Petz[]
+
+  @@map("users")
+}
+
+model Petz {
+  id        Int        @id @default(autoincrement())
+  userId    Int
+  name      String
+  birthDate DateTime
+  user      Users      @relation(fields: [userId], references: [id])
+  Vaccines  Vaccines[]
+
+  @@unique([name, userId])
+  @@map("petz")
+}
+
+model Vaccines {
+  id             Int      @id @default(autoincrement())
+  petId          Int
+  name           String
+  isDone         Boolean  @default(false)
+  expirationDate DateTime
+  pet            Petz     @relation(fields: [petId], references: [id])
+
+  @@unique([name, petId])
+  @@map("vaccines")
+}
