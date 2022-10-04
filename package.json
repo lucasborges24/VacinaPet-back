@@ -1,0 +1,45 @@
+{
+  "name": "vacinapet-back",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "build": "tsc && npx prisma generate && npx prisma migrate deploy",
+    "start": "node dist/app.js",
+    "dev": "nodemon src/server.ts",
+    "test": "dotenv -e .env.test prisma migrate dev && jest --no-cache"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/lucasborges24/VacinaPet-back.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/lucasborges24/VacinaPet-back/issues"
+  },
+  "homepage": "https://github.com/lucasborges24/VacinaPet-back#readme",
+  "dependencies": {
+    "@prisma/client": "^4.4.0",
+    "chalk": "^4.1.2",
+    "cors": "^2.8.5",
+    "dotenv": "^16.0.3",
+    "dotenv-cli": "^6.0.0",
+    "express": "^4.18.1",
+    "express-async-errors": "^3.1.1"
+  },
+  "devDependencies": {
+    "@types/cors": "^2.8.12",
+    "@types/express": "^4.17.14",
+    "@types/jest": "^29.1.1",
+    "@types/node": "^18.8.1",
+    "@types/nodemon": "^1.19.2",
+    "jest": "^29.1.2",
+    "nodemon": "^2.0.20",
+    "prisma": "^4.4.0",
+    "ts-jest": "^29.0.3",
+    "ts-node": "^10.9.1",
+    "typescript": "^4.8.4"
+  }
+}
