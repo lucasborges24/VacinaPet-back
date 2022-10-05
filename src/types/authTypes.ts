@@ -8,3 +8,4 @@ export interface ISignUpBody {
 }
 
 export type CreateDataUsers = Omit<Users, "id">;
+export type SignInType = Omit<Users, "id" | "fullName">;

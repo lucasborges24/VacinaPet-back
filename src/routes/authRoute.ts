@@ -1,7 +1,7 @@
 import { Router } from "express";
 import { authController } from "../controllers";
 import { validateSchemaMiddleware } from "../middlewares/schemaMiddleware";
-import { signUpSchema } from "../schemas/authSchema";
+import { signInSchema, signUpSchema } from "../schemas/authSchema";
 
 const authRouter = Router();
 
@@ -10,4 +10,10 @@ authRouter.post(
   validateSchemaMiddleware(signUpSchema),
   authController.signUp
 );
+authRouter.post(
+  "/signin",
+  validateSchemaMiddleware(signInSchema),
+  authController.signIn
+);
+
 export default authRouter;
