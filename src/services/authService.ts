@@ -26,7 +26,7 @@ export const signIn = async (data: SignInType) => {
   const user: Users = await getUserThatExistsByEmail(data.email);
   checkPasswordsMatch(data.password, user.password);
   const token: string = createTokenByJwt(user);
-  return token;
+  return { token };
 };
 
 const createTokenByJwt = (data: Users) => {
