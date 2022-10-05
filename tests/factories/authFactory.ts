@@ -1,4 +1,5 @@
 import { faker } from "@faker-js/faker";
+import { Users } from "@prisma/client";
 import { CreateDataUsers } from "../../src/types/authTypes";
 
 interface SignUpBody {
@@ -29,3 +30,12 @@ export const signInFactory = () => {
   return body;
 };
 
+export const createdUserFactory = () => {
+  const user: Users = {
+    id: +faker.random.numeric(5),
+    fullName: faker.name.fullName(),
+    email: faker.internet.email(),
+    password: faker.internet.password(8, true, /^/, "@A4"),
+  };
+  return user;
+};
