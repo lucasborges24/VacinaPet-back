@@ -1,13 +1,17 @@
-/** @type {import('ts-jest/dist/types').InitialOptionsTsJest} */
-export default {
+import type { JestConfigWithTsJest } from "ts-jest";
+
+const jestConfig: JestConfigWithTsJest = {
   preset: "ts-jest",
   clearMocks: true,
   testEnvironment: "node",
   extensionsToTreatAsEsm: [".ts"],
-  globals: {
-    "ts-jest": {
-      useESM: true,
-    },
+  transform: {
+    '^.+\\.tsx?$': [
+      'ts-jest',
+      {
+        useESM: true,
+      },
+    ],
   },
   moduleNameMapper: {
     "^(\\.{1,2}/.*)\\.js$": "$1",
@@ -26,3 +30,5 @@ export default {
     "<rootDir>/tests/factories",
   ],
 };
+
+export default jestConfig;
