@@ -1,7 +1,6 @@
 import supertest from "supertest";
 import app from "../../src/app";
-import prisma from "../../src/database";
-import { SignUpFactory } from "../factories/authFactory";
+import { signInFactory, SignUpFactory } from "../factories/authFactory";
 import {
   deleteAllData,
   disconnectPrisma,
@@ -47,4 +46,45 @@ describe("POST /signup", () => {
     expect(result.status).toBe(422);
     expect(result.error).toBeTruthy();
   });
+});
+
+describe("POST /signin", () => {
+  it("should return a token with status 202", async () => {
+    const newUserBody = SignUpFactory();
+
+    await server.post("/signup").send(newUserBody);
+    const body = {
+      email: newUserBody.email,
+      password: newUserBody.password,
+    };
+    const result = await server.post("/signin").send(body);
+
+    expect(result.status).toBe(202);
+    expect(result.body).toBeInstanceOf(Object);
+    expect(result.error).toBeFalsy();
+  });
+
+  it("Should return a error if email is not registered with status 401", async () => {
+    const user = signInFactory()
+
+    const result = await supertest(app).post("/signin").send(user);
+
+    expect(result.status).toBe(401)
+    expect(result.error).toBeTruthy();
+  })
+
+
+  it("Should return a error if password passed is not equal to the password registered with status 401", async () => {
+    const newUserBody = SignUpFactory();
+
+    await server.post("/signup").send(newUserBody);
+    const body = {
+      email: newUserBody.email,
+      password: '1' + newUserBody.password,
+    };
+    const result = await server.post("/signin").send(body);
+    
+    expect(result.status).toBe(401)
+    expect(result.error).toBeTruthy();
+  })
 });

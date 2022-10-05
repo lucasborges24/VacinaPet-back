@@ -21,3 +21,11 @@ export const SignUpFactory = () => {
   return body;
 };
 
+export const signInFactory = () => {
+  const body: SignInBody = {
+    email: faker.internet.email(),
+    password: faker.internet.password(8, true, /^/, "#A4"),
+  };
+  return body;
+};
+
