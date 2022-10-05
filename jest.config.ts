@@ -14,15 +14,15 @@ export default {
   },
   collectCoverage: true,
   // setupFilesAfterEnv: ["./jest.setup.ts"],
-//   coveragePathIgnorePatterns: [
-//     '<rootDir>/src/app.ts',
-//     '<rootDir>/src/database.ts',
-//     '<rootDir>/src/utils',
-//     '<rootDir>/src/middlewares',
-//     '<rootDir>/src/controllers',
-//     '<rootDir>/src/repositories',
-//     '<rootDir>/src/routers',
-//     '<rootDir>/src/schemas',
-//     '<rootDir>/tests/factories',
-// ]
+  coveragePathIgnorePatterns: [
+    "<rootDir>/src/app.ts",
+    "<rootDir>/src/database.ts",
+    "<rootDir>/src/utils",
+    "<rootDir>/src/middlewares",
+    "<rootDir>/src/controllers",
+    "<rootDir>/src/repositories",
+    "<rootDir>/src/routes",
+    "<rootDir>/src/schemas",
+    "<rootDir>/tests/factories",
+  ],
 };
