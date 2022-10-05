@@ -44,13 +44,13 @@ const createTokenByJwt = (data: Users) => {
 
 const checkPasswordsMatch = (password: string, encryptedPassword: string) => {
   const passwordIsValid = bcrypt.compareSync(password, encryptedPassword);
-  if (!passwordIsValid) throw unauthorizedError("invalid data!");
+  if (!passwordIsValid) throw unauthorizedError("Invalid data!");
   return true;
 };
 
 const getUserThatExistsByEmail = async (email: string) => {
   const user = await getUserByEmail(email);
-  if (!user) throw unauthorizedError("invalid data!");
+  if (!user) throw unauthorizedError("Invalid data!");
   return user;
 };
 
