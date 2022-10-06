@@ -22,6 +22,8 @@ model Petz {
   userId    Int
   name      String
   birthDate DateTime
+  genre     Genre
+  type      TypePetz
   user      Users      @relation(fields: [userId], references: [id])
   Vaccines  Vaccines[]
 
@@ -39,4 +41,14 @@ model Vaccines {
 
   @@unique([name, petId])
   @@map("vaccines")
+}
+
+enum TypePetz {
+  dog
+  cat
+}
+
+enum Genre {
+  male
+  female
 }
