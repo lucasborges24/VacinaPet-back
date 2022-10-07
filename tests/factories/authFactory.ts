@@ -12,9 +12,10 @@ interface SignUpBody {
 type SignInBody = Omit<SignUpBody, "fullName" | "confirmPassword">;
 
 export const SignUpFactory = () => {
-  const password = faker.internet.password(8, true, /^/, "@A4");
+  const password = faker.internet.password(10, true, /^/, "@A4");
+  
   const body: SignUpBody = {
-    fullName: faker.name.fullName(),
+    fullName: faker.lorem.words(3),
     email: faker.internet.email(),
     password: password,
     confirmPassword: password,
