@@ -27,7 +27,7 @@ model Petz {
   user      Users      @relation(fields: [userId], references: [id])
   Vaccines  Vaccines[]
 
-  @@unique([name, userId])
+  @@unique([name, userId, type])
   @@map("petz")
 }
 
