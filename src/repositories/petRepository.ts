@@ -6,7 +6,6 @@ import {
 } from "../types/petTypes";
 
 export const insertPet = async (data: CreatePetData) => {
-  
   const newPet = await prisma.petz.create({
     data,
   });
@@ -21,6 +20,15 @@ export const updatePet = async (data: IUpdatePetBody, petId: number) => {
     data: data,
   });
   return updatedPet;
+};
+
+export const deletePet = async (petId: number) => {
+  const deletedPet = await prisma.petz.delete({
+    where: {
+      id: petId,
+    },
+  });
+  return deletedPet;
 };
 
 export const searchPetById = async (id: number) => {

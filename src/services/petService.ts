@@ -1,14 +1,7 @@
 import { Petz, Users } from "@prisma/client";
 import { petRepository } from "../repositories";
-import {
-  CreatePetData,
-  IPetBody,
-  PetType,
-} from "../types/petTypes";
-import {
-  conflictError,
-  wrongSchemaError,
-} from "../utils/errorUtils";
+import { CreatePetData, IPetBody, PetType } from "../types/petTypes";
+import { conflictError, wrongSchemaError } from "../utils/errorUtils";
 import { checkParamsMatchs } from "../utils/ValidateUtils";
 
 export const postPet = async (userData: Users, bodyData: IPetBody) => {
