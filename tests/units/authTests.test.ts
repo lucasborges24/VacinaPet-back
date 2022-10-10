@@ -102,7 +102,6 @@ describe("Test signIn function", () => {
     jest.spyOn(jwt, "sign").mockImplementationOnce(() => token);
 
     const result = await authService.signIn(body);
-    console.log(result);
     
     expect(result).toEqual({ token });
     expect(jwt.sign).toBeCalledTimes(1);

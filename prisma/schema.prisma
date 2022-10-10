@@ -24,10 +24,10 @@ model Petz {
   birthDate DateTime
   genre     Genre
   type      TypePetz
-  user      Users      @relation(fields: [userId], references: [id])
+  user      Users      @relation(fields: [userId], references: [id], onDelete: Cascade)
   Vaccines  Vaccines[]
 
-  @@unique([name, userId])
+  @@unique([name, userId, type])
   @@map("petz")
 }
 
@@ -37,7 +37,7 @@ model Vaccines {
   name           String
   isDone         Boolean  @default(false)
   expirationDate DateTime
-  pet            Petz     @relation(fields: [petId], references: [id])
+  pet            Petz     @relation(fields: [petId], references: [id], onDelete: Cascade)
 
   @@unique([name, petId])
   @@map("vaccines")
